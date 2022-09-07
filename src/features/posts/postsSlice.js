@@ -14,7 +14,8 @@ const initialState = {
                 love: 0,
                 dislike: 0,
                 angry: 0,
-                coffee: 0
+                coffee: 0,
+                middleFinger: 0
             }
         },
         {
@@ -26,7 +27,8 @@ const initialState = {
                 love: 0,
                 dislike: 0,
                 angry: 0,
-                coffee: 0
+                coffee: 0,
+                middleFinger: 0
             }
         },
     ]
@@ -37,12 +39,16 @@ const postsSlice = createSlice({
     initialState,
     reducers: {
         postAdded: (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             state.posts.push(action.payload)
+        },
+        reactionAdded: (state, { payload }) => {
+            const clickedPost = state.posts.find(post => post.id === payload.id)
+            clickedPost.reaction[payload.name]++
         }
     }
 })
 
 export const getAllPosts = store => store.posts.posts
-export const { postAdded } = postsSlice.actions
+export const { postAdded, reactionAdded } = postsSlice.actions
 export default postsSlice.reducer

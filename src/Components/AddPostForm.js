@@ -9,7 +9,7 @@ const AddPostForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         const { title, body } = data
-        const reactions = {
+        const reaction = {
             love: 0,
             dislike: 0,
             angry: 0,
@@ -17,8 +17,7 @@ const AddPostForm = () => {
             middleFinger: 0
         }
 
-        dispatch(postAdded({ title, body, reactions }))
-        console.log(title, body, reactions);
+        dispatch(postAdded({ title, body, reaction }))
     }
 
     return (
