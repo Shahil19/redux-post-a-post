@@ -8,15 +8,24 @@ const AddPostForm = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        dispatch(postAdded(data))
-        console.log(data);
+        const { title, body } = data
+        const reactions = {
+            love: 0,
+            dislike: 0,
+            angry: 0,
+            coffee: 0,
+            middleFinger: 0
+        }
+
+        dispatch(postAdded({ title, body, reactions }))
+        console.log(title, body, reactions);
     }
 
     return (
         <section className='flex justify-center items-center py-10'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h3 className='text-3xl text-center'>Post a Post</h3>
-                <div className="form-control w-full max-w-md mb-3">
+                <div className="form-control w-full max-w-md mb-2">
                     <label className="label">
                         <span className="label-text">Post Title</span>
                     </label>
@@ -26,19 +35,14 @@ const AddPostForm = () => {
                     </label>
                 </div>
 
-                <div className="form-control w-full max-w-md mb-3">
+                <div className="form-control mb-3">
                     <label className="label">
                         <span className="label-text">Content</span>
                     </label>
-                    <input {...register("body", { required: true })} type="text" placeholder="Content" className="input input-bordered w-full max-w-xs" />
-                    <label className="label">
-                        <span className="label-text-alt">{errors.body && <span>Content is required</span>}</span>
-                    </label>
+                    <textarea {...register("body", { required: true })} type="text" placeholder="Content" className="textarea textarea-bordered h-24"></textarea>
                 </div>
 
-                {/* <div className='mt-3'> */}
                 <button type="submit" className="btn btn-wide">Save Post</button>
-                {/* </div> */}
             </form>
         </section>
     );

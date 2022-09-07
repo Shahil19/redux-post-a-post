@@ -6,11 +6,12 @@ const PostReactions = ({ reaction }) => {
         love: '💛',
         dislike: '👎',
         angry: "👿",
-        coffee: "☕"
+        coffee: "☕",
+        middleFinger: "🖕"
     }
 
     const reactionEntries = Object.entries(reactions).map(([name, emoji]) => (
-        <kbd key={name} className="kbd bg-transparent border-none hover:bg-red-100 cursor-pointer"><span className='mr-1'>{emoji}</span> <span>{reaction[name]}</span></kbd>
+        <kbd key={name} className="kbd bg-transparent border-none hover:bg-red-100 cursor-pointer"><span className='mr-1'>{emoji}</span></kbd>
     ))
 
     return (
